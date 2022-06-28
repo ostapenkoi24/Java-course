@@ -1,8 +1,8 @@
 package Homework7;
 
 public enum Size {
-    SMALL(37,46, "S"), MEDIUM(40,48, "M"),
-    LARGE(42,52, "L"), EXTRA_LARGE(46,56, "XL");
+    SMALL(37, 46, "S"), MEDIUM(40, 48, "M"),
+    LARGE(42, 52, "L"), EXTRA_LARGE(46, 56, "XL");
 
     private int width;
     private int length;
@@ -16,18 +16,23 @@ public enum Size {
     }
 
     public int getWidth() {
+
         return width;
     }
 
     public int getLength() {
+
         return length;
     }
 
     public String getSize() {
+
         return size;
     }
 
     @Override
     public String toString() {
-        return getSize() + " size: width=" +getWidth() + ",length="+getLength();     }
+
+        return getSize() + " or "+super.toString() + " size: width=" + getWidth() + ",length=" + getLength();
+    }
 }
