@@ -33,6 +33,6 @@ public enum Size {
     @Override
     public String toString() {
 
-        return getSize() + " or "+super.toString() + " size: width=" + getWidth() + ",length=" + getLength();
+        return getSize() + " or " + super.toString() + " size: width=" + getWidth() + ",length=" + getLength();
     }
 }
