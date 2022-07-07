@@ -8,8 +8,8 @@ import java.util.TreeSet;
 
 public class Homework8 {
     public static void string(String str) {
-
-        String[] string = str.split(", ");
+        String result = str.toLowerCase();
+        String[] string = result.split(", ");
         Set<String> set = new TreeSet<>(Arrays.asList(string));
 
         for (String s : set) {
