@@ -13,10 +13,10 @@ public class Test {
     static JavaBasic javaBasic = new JavaBasic(driver);
 
     public static void main(String[] args) {
-    javaBasic.getCourseTitle();
+        System.out.println(javaBasic.getCourseTitle());
 
-    javaBasic.getCourseRate();
-    javaBasic.getCourseDescription();
+        System.out.println(javaBasic.getCourseRate());
+        System.out.println(javaBasic.getCourseDescription());
 
         try {
             Thread.sleep(5000);

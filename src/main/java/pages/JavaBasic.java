@@ -14,20 +14,19 @@ public class JavaBasic {
         this.driver=driver;
     }
 
-    public void getCourseTitle() {
-        System.out.println((driver.findElement(By.className("course-descriptor_header-text")).getText()));
-
+    public String getCourseTitle() {
+        return  driver.findElement(By.className("course-descriptor_header-text")).getText();
 
 
     }
 
-    public void getCourseRate(){
-        System.out.println(driver.findElement(By.className("course-rating")).getText());
+    public String getCourseRate(){
+        return driver.findElement(By.className("course-rating")).getText();
 
     }
 
-    public void getCourseDescription(){
-        System.out.println(driver.findElement(By.className("programme-h_title")).getText());
+    public String getCourseDescription(){
+        return driver.findElement(By.className("programme-h_title")).getText();
 
     }
 }
