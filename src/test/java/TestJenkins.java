@@ -1,11 +1,11 @@
-package pages;
-
+import driverConfig.BROWSER;
 import driverConfig.DriverFactory;
 import org.openqa.selenium.WebDriver;
+import pages.JavaBasic;
 
-public class Test {
+public class TestJenkins {
     static final String BASEURL="https://ithillel.ua/courses/java-basic";
-    static WebDriver driver = DriverFactory.getDriver("CHROME");
+    static WebDriver driver = DriverFactory.getDriver(BROWSER.CHROME);
 
     static {
         driver.get(BASEURL);

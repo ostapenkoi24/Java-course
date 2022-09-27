@@ -22,11 +22,13 @@ import org.junit.runner.RunWith;
 public class RunnerCucumber {
     @BeforeClass
     public static void start() {
+
         CucumberBase.driver = DriverFactory.getDriver(BROWSER.CHROME);
     }
 
     @AfterClass
     public static void end() {
+
         CucumberBase.driver.quit();
     }
 }

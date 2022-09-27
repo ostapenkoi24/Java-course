@@ -1,4 +1,4 @@
-package gfhfg.New;
+package driverConfig;
 
 public enum BROWSER {
     CHROME, FIREFOX

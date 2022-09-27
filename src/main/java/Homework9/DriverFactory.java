@@ -8,10 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
 
-    public static WebDriver getDriver(String brows){
+    public static WebDriver getDriver(BROWSER brows){
         WebDriver driver = null;
-        BROWSER browser = BROWSER.valueOf(brows);
-        switch (browser){
+//        BROWSER browser = BROWSER.valueOf(brows);
+        switch (brows){
             case CHROME:
                 driver = initChrome();
                 break;

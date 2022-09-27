@@ -1,8 +1,6 @@
 import org.junit.Assert;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import pages.BlogPage;
 import pages.MainPage;
 
@@ -21,7 +19,7 @@ public class Homework12 extends Base{
     public void testBlog(){
 
         mainPage.clickBlogButton();
-        Assert.assertEquals(driver.getTitle(), "Корисні матеріали: статті та новини IT-індустрії | Комп'ютерна школа Hillel");
+        Assert.assertEquals(driver.getTitle(), "Корисні матеріали: Cтатті та новини IT-індустрії | Комп'ютерна школа Hillel");
         blogPage=new BlogPage(driver);
 
     }

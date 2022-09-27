@@ -1,7 +1,6 @@
-package gfhfg.New;
+package Homework9;
 
 
-import Homework9.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +13,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        WebDriver driver = DriverFactory.getDriver("CHROME");
+        WebDriver driver = DriverFactory.getDriver(BROWSER.CHROME);
         driver.get(BASEURL);
         WebElement element = driver.findElement(SEARCH);
         System.out.println(driver.getTitle());
