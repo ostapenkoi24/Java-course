@@ -1,8 +1,7 @@
 package apium.steps;
 
 import apium.BaseAppiumSteps;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import util.Util;
@@ -17,12 +16,10 @@ public class MainAppiumSteps extends BaseAppiumSteps {
 
     }
 
-    @Then("^Title site$")
     public void titleSite() {
         System.out.println(driver.getTitle());
     }
 
-    @Then("^Print list$")
     public void printList() {
         By itList = By.id("swiper-coaches");
         Util.scrollToElementVisibilityOf(driver, itList);
