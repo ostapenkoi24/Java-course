@@ -15,20 +15,20 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class DriverFactory {
-
-    public static WebDriver getDriver(BROWSER browser){
+    public static WebDriver getDriver(BROWSER brows) {
         WebDriver driver = null;
-//        BROWSER browser = BROWSER.valueOf(brows);
-        switch (browser){
+
+        switch (brows) {
             case CHROME:
                 driver = initChrome();
                 break;
             case FIREFOX:
-                driver = initFirefox();
+                driver = initFireFox();
                 break;
             case CHROMEPROXY:
                 driver = initChromeProxy();
@@ -38,50 +38,21 @@ public class DriverFactory {
                 break;
             case LOGWITHOPTIONS:
                 driver=inichroWithLogOptions();
-                break;
         }
         return driver;
     }
-    private static WebDriver initFirefox(){
 
-        return new FirefoxDriver();
-    }
-    private static WebDriver initChrome(){
+    private static WebDriver inichroWithLogOptions() {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments( "--start-maximized" );
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        return driver;
-    }
-    private static WebDriver initChromeProxy()  {
-        BrowserMobProxyServer server = new BrowserMobProxyServer();
-        server.setTrustAllServers(true);
-        server.start();
-
-
-        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
-        String hostIp = null;
-        try {
-            hostIp = Inet4Address.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
-        seleniumProxy.setHttpProxy(hostIp + ":" + server.getPort());
-        seleniumProxy.setSslProxy(hostIp + ":" + server.getPort());
-
+        LoggingPreferences prefs = new LoggingPreferences();
+        prefs.enable(LogType.BROWSER, Level.WARNING);
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
-
-        capabilities.setAcceptInsecureCerts(true);////
-
+        capabilities.setCapability(CapabilityType.LOGGING_PREFS, prefs);
         ChromeOptions options = new ChromeOptions();
         options.merge(capabilities);
-
-        WebDriver driver = new ChromeDriver(options);
-        BaseClass.server = server;
-        return driver;
+        return new ChromeDriver(options);
     }
+
     private static WebDriver initProxyChromeHar() {
         BrowserMobProxyServer server = new BrowserMobProxyServer();
         server.setTrustAllServers(true);
@@ -112,15 +83,47 @@ public class DriverFactory {
         BaseClass.server = server;
         return driver;
     }
-    private static WebDriver inichroWithLogOptions() {
 
-        LoggingPreferences prefs = new LoggingPreferences();
-        prefs.enable(LogType.BROWSER, Level.WARNING);
+    private static WebDriver initChromeProxy()  {
+        BrowserMobProxyServer server = new BrowserMobProxyServer();
+        server.setTrustAllServers(true);
+        server.start();
+
+
+        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
+        String hostIp = null;
+        try {
+            hostIp = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        seleniumProxy.setHttpProxy(hostIp + ":" + server.getPort());
+        seleniumProxy.setSslProxy(hostIp + ":" + server.getPort());
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.LOGGING_PREFS, prefs);
+        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+
+        capabilities.setAcceptInsecureCerts(true);////
+
         ChromeOptions options = new ChromeOptions();
         options.merge(capabilities);
-        return new ChromeDriver(options);
+
+        WebDriver driver = new ChromeDriver(options);
+        BaseClass.server = server;
+        return driver;
     }
 
+
+    private static WebDriver initFireFox() {
+        return new FirefoxDriver();
+    }
+
+    private static WebDriver initChrome() {
+        Properties props = System.getProperties();
+        props.setProperty("webdriver.chrome.driver", "C:\\driversweb\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        return driver;
+    }
 }

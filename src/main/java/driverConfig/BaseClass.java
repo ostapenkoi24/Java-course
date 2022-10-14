@@ -19,10 +19,11 @@ public class BaseClass {
         driver= DriverFactory.getDriver(BROWSER.CHROMEPROXY);
     }
     @AfterClass
-    public static void close(){
+    public static void clovse(){
         driver.close();
-        server.stop();
-    }
+            if(server !=null){
+            server.stop();
+    }}
 
 }
 
